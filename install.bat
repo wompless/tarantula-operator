@@ -44,4 +44,26 @@ echo On check la version sur GitHub, histoire de pas passer à côté d’une no
 curl -s https://raw.githubusercontent.com/ton-utilisateur/ton-repo/main/package.json -o temp_package.json
 if exist temp_package.json (
     for /f "tokens=2 delims=:," %%A in ('findstr /i "version" temp_package.json') do set "remote_version=%%A"
-    s
+    set "remote_version=!remote_version: =!"
+    set "remote_version=!remote_version:~1,-1!"
+    echo Version disponible sur GitHub : !remote_version!
+    del temp_package.json
+
+    if "!local_version!" neq "!remote_version!" (
+        echo Ohlala ! Une nouvelle version est dispo : !remote_version! 🎉
+        echo Va la récupérer sur GitHub pour être à jour et encore plus badass !
+        pause
+        exit /b
+    ) else (
+        echo Ton selfbot est déjà à jour. T'es au top ! 🚀
+    )
+) else (
+    echo Hmm... Pas moyen de récupérer la version sur GitHub. Vérifie l'URL ou ta connexion.
+    pause
+    exit /b
+)
+
+:: Si tout est bon, on lance le selfbot. Let's go !
+echo Tout est OK, on lance Tarantula Operator. Prêt ? C'est parti ! 🕷️
+node index.js
+pause
