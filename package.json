@@ -1,0 +1,15 @@
+{
+  "name": "tarantula-operator",
+  "version": "1.0.0",
+  "description": "New Discord Selfbot with gui interface",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "selfbot",
+    "discord"
+  ],
+  "author": "ksch_dsc",
+  "license": "ISC"
+}
